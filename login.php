@@ -33,6 +33,7 @@
 	  </p>
 	  <input type="submit" value="submit"/>
 	<a href="resetPassword.php"><br/>Forgot your password?  Click here to reset.</a>
+	<a> Note to developers: we will be implementing Ajax(?) to allow for Admin logins through THIS PAGE! </a>
 	</form>  
 	</fieldset>
    </div>
