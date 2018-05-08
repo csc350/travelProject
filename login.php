@@ -32,6 +32,7 @@
 			maxlength="30" />
 	  </p>
 	  <input type="submit" value="submit"/>
+	<a href="resetPassword.php"><br/>Forgot your password?  Click here to reset.</a>
 	</form>  
 	</fieldset>
    </div>
