@@ -4,7 +4,7 @@ session_start();
 $username = $_GET['username'];
 $password = $_GET['password'];
 
-if(($_Session [$username] == 'christian') AND ($_Session [$password] == 'gonzalez')){
+if(($_REQUEST ['username'] == 'christian') && ($_REQUEST ['password'] == 'gonzalez')){
 		include ('userspage.php');
 		
 }
