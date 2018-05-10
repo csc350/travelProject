@@ -1,0 +1,87 @@
+CREATE TABLE admin_user
+(
+   	admin_id int NOT NULL AUTO_INCREMENT,
+	admin_name varchar(30) NOT NULL,
+	admin_user_id varchar(30) NOT NULL,
+	admin_password varchar(40) NOT NULL,
+        primary key (admin_id)
+);
+
+
+CREATE TABLE users
+(
+   	user_id int NOT NULL AUTO_INCREMENT,
+	first_name varchar(40) NOT NULL,
+	last_name varchar (40) NOT NULL, 
+	user_name varchar(40) NOT NULL, 
+	email varchar(60) NOT NULL,
+	password varchar(40) NOT NULL, 
+	date_birth date NOT NULL,  
+	registration_time  time,    
+	phone_number char(10) NOT NULL,
+        primary key (user_id)
+);
+
+
+
+CREATE TABLE travel_location
+(
+   	travel_location_id int NOT NULL AUTO_INCREMENT, 
+	coordinate_longitude float NOT NULL, 
+        coordinate_latitude float NOT NULL, 
+	travel_date date NOT NULL, 
+	travel_time time NOT NULL, 
+	admin_id int, 
+	user_id int,
+        primary key (travel_location_id)
+);
+
+CREATE TABLE location_description 
+(
+   	location_description_id int NOT NULL AUTO_INCREMENT, 
+	location_images blob NOT NULL,
+	location_image_type  varchar(25) not null default '',
+	image_size    varchar(25) not null default '',
+	brief_description text, 
+	weather_description text, 
+	best_travel_season text, 
+	cuisine_description text, 
+	travel_location_id int NOT NULL, 
+	primary key (location_description_id), 
+        foreign key (travel_location_id) references travel_location(travel_location_id)
+);
+
+CREATE TABLE travel_plan  
+(
+   	travel_plan_id int, 
+	user_id int NOT NULL, 
+	primary key (travel_plan_id), 
+        foreign key (user_id) references users(user_id)
+);
+
+
+CREATE TABLE travel_plan_location  
+(
+   	travel_plan_id int NOT NULL, 
+	travel_location_id int NOT NULL,
+	travel_date date NOT NULL,
+	travel_time time,
+	primary key (travel_plan_id,travel_location_id)
+);
+
+
+CREATE TABLE tag   
+(
+   	tag_id int NOT NULL AUTO_INCREMENT, 
+	tag_name varchar(40) NOT NULL,
+	admin_id int NOT NULL,
+	primary key (tag_id)
+);
+
+
+CREATE TABLE travel_location_tag   
+(
+   	travel_location_id int NOT NULL, 
+	tag_id int NOT NULL,
+	primary key (travel_location_id, tag_id)
+);
