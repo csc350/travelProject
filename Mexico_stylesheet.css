@@ -1,0 +1,31 @@
+body{
+	width:90%;
+	margin: 0 auto;
+}
+
+.place{
+	height:10em;
+	margin-bottom:1em;
+    background-color: #efefef;
+}
+
+
+.places{
+	height:10em;
+	margin-bottom:1em;
+    background-color: #efefef;
+}
+
+.city1, .city2{
+	width:31.3%;
+	float:left;
+	margin:1%;
+}
+
+.cities1, .cities2, .cities3{
+	width:31.3%;
+	float:left;
+	margin:1%;
+	
+}
+.cities3{margin-right:0%;}
