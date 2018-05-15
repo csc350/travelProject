@@ -15,7 +15,7 @@
   
    <div style="text-align:center;">
     <fieldset>
-	<form action="login_validation.php" method="GET">
+	<form action="login_validation.php" method="POST">
 	  <legend>
 		<font size="12">
 	    Login
@@ -23,7 +23,7 @@
 	  </legend>
 
 	  <p>Username:
-		<input type="text" name="username" size="15"
+		<input type="text" name="user_name" size="15"
 			maxlength="30" />
 	  </p>
 	  
@@ -36,6 +36,9 @@
 	<a> Note to developers: we will be implementing Ajax(?) to allow for Admin logins through THIS PAGE! </a>
 	</form>  
 	</fieldset>
+	<div>
+	   <p>Not A Member? Sign up Now! <a href="sign_up.php">Sign Up </a> </p>
+	</div>
    </div>
    <!--include the footer--> 
 	<p><?php include ('./include/footer.html'); ?> </p>
