@@ -52,13 +52,13 @@
 	  
 	  
 	  <p>Enter a brief description of the location: </p>
-	  <textarea name="comments" cols="20" rows="4"> Enter your comments..</textarea>
+	  <textarea name="comments" cols="30" rows="10"> Enter your comments..</textarea>
 	  
 	  <p>Enter a brief description of the weather:</p>
-	  <textarea name="comments" cols="20" rows="4"> what is the weather like...</textarea>
+	  <textarea name="comments" cols="30" rows="10"> what is the weather like...</textarea>
 	  
 	  <p>Enter a the best place to go when traveling to that location:</p>
-	  <textarea name="comments" cols="20" rows="4"> what is the weather like...</textarea>
+	  <textarea name="comments" cols="30" rows="10"> what is the weather like...</textarea>
 	  
 
 	  <br/>
