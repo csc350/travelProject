@@ -12,8 +12,18 @@
 </head>
 
 <body>
-<!--include the header--> 
-    <p><?php include ('./include/header.html'); ?></p>
+  <!--include the header--> 
+	 <p><?php 
+	    // echo $_SESSION['user_id']; 
+	     if (!isset($_SESSION['user_id'])){ 
+		 
+		     include ('./include/header.html');
+		 }
+		 else
+		 {
+			 include ('./include/header_user.html'); 
+		 }
+	?></p>
 <div class="a">
   <div class ="title">
    <p>Who are we?</b></p>
@@ -66,3 +76,4 @@
 	<p><?php include ('./include/footer.html'); ?> </p>
 </body>  
 </html>
+
