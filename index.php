@@ -1,5 +1,5 @@
 <?php   session_start(); ?>
-<!DOCTYPE html>
+
 <html>
   <head>
     <meta charset="utf-8">
@@ -72,7 +72,7 @@
   </div>
   <div class="column" style="background-color:#ccc;">
     <img src="https://cdn.londonandpartners.com/visit/london-organisations/houses-of-parliament/63950-640x360-london-icons2-640.jpg" alt="London" style="width:500px;height:400px;">
-	<h2 style="text-align:center;">London</h2>
+	<h2 style="text-align:center;">The UK</h2>
   </div>
   
   <br/>
