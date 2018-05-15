@@ -11,9 +11,18 @@
 	<link rel="stylesheet" href="./css/footer_style.css">
   </head>
   <body>
-  <!--include the header--> 
-    <p><?php include ('./include/header.html'); ?></p>
-  
+   <!--include the header--> 
+	 <p><?php 
+	    // echo $_SESSION['user_id']; 
+	     if (!isset($_SESSION['user_id'])){ 
+		 
+		     include ('./include/header.html');
+		 }
+		 else
+		 {
+			 include ('./include/header_user.html'); 
+		 }
+	?></p>
    <div id="header" style="text-align:center;">
    <h1>Welcome back!<h1>
 	<div id="nav">
@@ -21,7 +30,7 @@
 		 <li><a href="AccountInfo.php">Info</a><li>
 		 <li><a href="TravelHistory.php">Travel History</a><li>
 		 <li><a href="PlanningPage.php">Trip Planning Page</a><li>
-		 <li><a href="Locations.php">Locations</a><li>
+		 <li><a href="location.php">Locations</a><li>
 		</ul>
     </div>	
   </div>
