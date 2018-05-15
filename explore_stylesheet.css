@@ -1,0 +1,44 @@
+body{
+	width:90%
+	margin:0 auto;
+	text-align: center;
+}
+#content{overflow: auto;}
+#nav{
+	margin:1%;
+}
+
+.place1, .place2, .place3{
+	width:28.3%;
+	float:left;
+	margin:1%;
+}
+.place3{
+	margin-right: 0%;
+}
+
+.location{
+	height:20em;
+	margin-bottom: 1em;
+	background-color: efefef;
+}
+.places1, .places2{
+	width:28.3%;
+	float:left;
+	margin:1%;
+}
+.locations{
+	height:20em;
+	margin-bottom: 1em;
+	background-color: efefef;
+}
+.position{
+	 text-align: center;
+    border: 3px solid green;
+}
+
+
+#nav{
+	background-color:#efefef;
+	padding:0.5em 0;
+}
