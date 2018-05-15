@@ -45,7 +45,6 @@ if (isset($_GET['email'])) {
 ?> 
 
 <a href="login.php">Return to Login Page</a>
-
-<p><?php include ('./include/footer.html'); ?></p>
 </body>
+<p><?php include ('./include/footer.html'); ?></p>
 </html>
