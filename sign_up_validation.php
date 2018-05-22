@@ -3,10 +3,10 @@
 	 if(isset($_POST['user_name']) &&  !empty($_POST['user_name']) && isset($_POST['first_name']) && !empty($_POST['first_name']) && 
 	    isset($_POST['last_name']) &&  !empty($_POST['last_name']) && isset($_POST['password'])   && !empty($_POST['password']) &&
 		isset($_POST['email'])     &&  !empty($_POST['email'])     && isset($_POST['phone'])      && !empty($_POST['phone']) &&
-		isset($_POST['birthday'])  &&  !empty($_POST['birthday'] )){
+		isset($_POST['DateofBirth'])  &&  !empty($_POST['DateofBirth'] )){
 	   
-	   //Connect to the database 
-	   require('C:/xampp/mysqli_connect.php'); 	   
+	    //Connect to the database 
+	    require('C:/xampp/mysqli_connect.php'); 	   
 	   
 	   
 	    $user_name  = mysqli_real_escape_string($dbc, $_POST['user_name']);
@@ -15,7 +15,8 @@
 		$password   = md5(mysqli_real_escape_string($dbc, $_POST['password']));
 		$email      = mysqli_real_escape_string($dbc, $_POST['email']);
 		$phone      = mysqli_real_escape_string($dbc, $_POST['phone']);
-	    $birthday   = mysqli_real_escape_string($dbc, $_POST['birthday']);
+	    $birthday   = date('Y-m-d',strtotime(mysqli_real_escape_string($dbc, $_POST['DateofBirth'])));
+		$current_date = date("Y-m-d H:i:s");
 		
 		//Get the query from the database with the entered user_name
 	    //Check if the user_name is already in the database 
@@ -34,6 +35,8 @@
 		   //User name has been used
 		   if (mysqli_num_rows($result) != 0){
 			   echo "The user name has been used."; 
+				echo '<li><a href='."sign_up.php".'>Return to Sign up Page</a></li>';
+			   echo '<li><a href='."login.php".'>Return to Login Page</a></li>';
 		   }else{
 			   $query2 = "SELECT * FROM users WHERE email = ?";
 			   $stmt2 = mysqli_stmt_init($dbc); 
@@ -50,18 +53,21 @@
 					 //Email has been used
 					 if (mysqli_num_rows($result) != 0){
 						echo "The email has been used.";   
+						echo '<li><a href='."sign_up.php".'>Return to Sign up Page</a></li>';
+						echo '<li><a href='."login.php".'>Return to Login Page</a></li>';
 					 }else{
 						 
-						$query3 = "INSERT INTO users (first_name, last_name, user_name, email, password, date_birth, phone_number) VALUES (?,?,?,?,?,?,?)";
+						$query3 = "INSERT INTO users (first_name, last_name, user_name, email, password, date_birth, registration_time, phone_number) VALUES (?,?,?,?,?,?,?,?)";
 						$stmt3 = mysqli_stmt_init($dbc);
 						
 						if (!mysqli_stmt_prepare($stmt3, $query3)){
 							echo "SQL statement failed 3."; 
 						}else{
-							mysqli_stmt_bind_param($stmt3,"sssssis", $first_name, $last_name, $user_name, $email, $password, $birthday, $phone);
+							mysqli_stmt_bind_param($stmt3,"ssssssss", $first_name, $last_name, $user_name, $email, $password, $birthday, $current_date, $phone);
 							mysqli_stmt_execute($stmt3); 
 							
 							echo "You have successfully registered!"; 
+							echo '<li><a href='."login.php".'>Return to Login Page</a></li>';
 						}
 					}						
 			   }

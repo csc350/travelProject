@@ -1,6 +1,8 @@
 
 <?php
-  session_start(); 
+  if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+	}
   if($_SERVER['REQUEST_METHOD']=='POST'){
 	 if(isset($_POST['user_name']) &&  !empty($_POST['user_name']) && isset($_POST['password'])   && !empty($_POST['password'])){
 	   

@@ -1,4 +1,7 @@
-<?php   session_start(); ?>
+<?php   
+	session_start();
+	include ('./include/header.html'); 
+ ?>
 
 <html>
   <head>
@@ -13,18 +16,6 @@
   </head>
   
   <body>
-    <!--include the header--> 
-	 <p><?php 
-	    // echo $_SESSION['user_id']; 
-	     if (!isset($_SESSION['user_id'])){ 
-		 
-		     include ('./include/header.html');
-		 }
-		 else
-		 {
-			 include ('./include/header_user.html'); 
-		 }
-	?></p>
 
 <style>
 * {
