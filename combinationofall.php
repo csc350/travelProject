@@ -18,7 +18,6 @@
        * element that contains the map. */
       #map {
         height: 100%;
-		width: 70%;
       }
       /* Optional: Makes the sample page fill the window. */
       html, body {
@@ -39,7 +38,6 @@
         line-height: 30px;
         padding-left: 10px;
       }
-
     </style>
 	
   </head>
@@ -58,7 +56,7 @@
     </div>
     <p>Click on the map search for places already in the database. Search radius is</p>
 
-    <div id="map" height="480px" width="480px"></div>
+    <div id="map" height="480px" width="100%"></div>
     <div id="message">Location saved</div>
 	<div id="formEdit">
       <table>
@@ -86,7 +84,6 @@
       };
 	  
 	  $('#form').hide();
-
       function initMap() {
         var california = {lat: -33.7, lng: 151};
         map = new google.maps.Map(document.getElementById('map'), {
@@ -97,18 +94,15 @@
             position: california,
             map: map
         });
-
         infowindow = new google.maps.InfoWindow({
           content: document.getElementById('form')
         });
-
         messagewindow = new google.maps.InfoWindow({
           content: document.getElementById('message')
         });
 		
         infowindow.open(map, marker);
-		$('#form').show();
-
+		$('#formEdit').hide();
         google.maps.event.addListener(map, 'click', function(event) {
           marker.setPosition(event.latLng);
           google.maps.event.addListener(marker, 'click', function() {
@@ -116,15 +110,12 @@
           });
         });
       }
-
       function searchData() {
         var title = escape(document.getElementById('title').value);
         var title = escape(document.getElementById('radius').value);
         var latlng = marker.getPosition();
         var url = 'searching.php?latitude=' + latlng.lat() + '&longitude=' + latlng.lng() + '&radius=' + radius+ '&title=' + title;
-
           var infoWindowSearch = new google.maps.InfoWindow;
-
           // Change this depending on the name of your PHP or XML file
           downloadUrl(url, function(data) {
             var xml = data.responseXML;
@@ -137,7 +128,6 @@
                   parseFloat(travel_location_element.getAttribute('latitude')),
                   parseFloat(travel_location_element.getAttribute('longitude')));
               var distance = travel_location_element.getAttribute('distance');
-
               var infowincontent = document.createElement('div');
 				infowincontent.setAttribute("id", "infowin");
               var strong = document.createElement('strong');
@@ -170,19 +160,16 @@
             });
           });
       }
-
       function downloadUrl(url, callback) {
         var request = window.ActiveXObject ?
             new ActiveXObject('Microsoft.XMLHTTP') :
             new XMLHttpRequest;
-
         request.onreadystatechange = function() {
           if (request.readyState == 4) {
             request.onreadystatechange = doNothing;
             callback(request, request.status);
           }
         };
-
         request.open('GET', url, true);
         request.send(null);
       }
@@ -190,14 +177,12 @@
         var request = window.ActiveXObject ?
             new ActiveXObject('Microsoft.XMLHTTP') :
             new XMLHttpRequest;
-
         request.onreadystatechange = function() {
           if (request.readyState == 4) {
             request.onreadystatechange = doNothing;
             callback(request.responseText, request.status);
           }
         };
-
         request.open('GET', url, true);
         request.send(null);
       }
@@ -210,7 +195,6 @@
 		var url = 'googlemapseditLocation.php?id=' + id + '&title=' + title;
 		downloadUrl2(url, function(data, responseCode) {
 			alert('success');
-
           if (responseCode == 200 && data.length <= 1) {
             messagewindow.open(map, marker);
           }
@@ -220,16 +204,13 @@
         var title = escape(document.getElementById('title').value);
         var latlng = marker.getPosition();
         var url = 'googlemapsenteringlocation.php?title=' + title + '&latitude=' + latlng.lat() + '&longitude=' + latlng.lng();
-
         downloadUrl(url, function(data, responseCode) {
-
           if (responseCode == 200 && data.length <= 1) {
             infowindow.close();
             messagewindow.open(map, marker);
           }
         });
       }
-
       function doNothing () {
       }
 	  
@@ -243,31 +224,25 @@
         });
         markers[location_id] = addMarkers;
       }
-
       // Sets the map on all markers in the array.
       function setMapOnAll(map) {
         for (var i in markers) {
           markers[i].setMap(map);
         }
       }
-
       // Removes the markers from the map, but keeps them in the array.
       function clearMarkers() {
         setMapOnAll(null);
       }
-
       // Shows any markers currently in the array.
       function showMarkers() {
         setMapOnAll(map);
       }
-
       // Deletes all markers in the array by removing references to them.
       //function deleteMarkers() {
 		//alert(iterator);
 		//clearMarkers();
       //}//
-
-
     </script>
 	 <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCvaeSNIT6Csk3dRjLdfy4_Kw9UrY4WBlE&callback=initMap">
