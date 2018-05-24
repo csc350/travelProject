@@ -18,6 +18,7 @@
        * element that contains the map. */
       #map {
         height: 100%;
+		width: 100%;
       }
       /* Optional: Makes the sample page fill the window. */
       html, body {
@@ -42,6 +43,9 @@
 	
   </head>
   <body>
+	<input type='text' id='location_id'/>
+	<input type='text' id='travel_date'/>
+	<input type='text' id='travel_time'/>
 	<div id="floating-panel">
       <input onclick="clearMarkers();" type=button value="Hide Markers">
       <input onclick="showMarkers();" type=button value="Show All Markers">
@@ -56,19 +60,18 @@
     </div>
     <p>Click on the map search for places already in the database. Search radius is</p>
 
-    <div id="map" height="480px" width="100%"></div>
+    <div id="map"  style="width:50%;height:400px;"></div>
     <div id="message">Location saved</div>
 	<div id="formEdit">
       <table>
       <tr><td>titleEdit:</td> <td><input type='text' id='titleEdit'/> </td> </tr>
+	<tr><td>travelDate:</td><td><input type='text' id='travel_date'/></td></tr>
+	<tr><td>travelTime:</td><td><input type='text' id='travel_time'/></td></tr>
       </table>
     </div>
     <script type="text/javascript" src="js/jquery-3.3.1.min.js" charset="utf-8"></script>
 	<script>
 	  
-	
-	var user_name = '<?php echo $_SESSION['user_name'] ?>';
-	var user_id = '<?php echo $_SESSION['user_id'] ?>';
       var map;
       var marker;
 	  var markers = {};
@@ -84,6 +87,8 @@
       };
 	  
 	  $('#form').hide();
+	  $('#formEdit').hide();
+      
       function initMap() {
         var california = {lat: -33.7, lng: 151};
         map = new google.maps.Map(document.getElementById('map'), {
@@ -102,19 +107,20 @@
         });
 		
         infowindow.open(map, marker);
-		$('#formEdit').hide();
+		
         google.maps.event.addListener(map, 'click', function(event) {
           marker.setPosition(event.latLng);
           google.maps.event.addListener(marker, 'click', function() {
             infowindow.open(map, marker);
           });
         });
+		
       }
       function searchData() {
         var title = escape(document.getElementById('title').value);
-        var title = escape(document.getElementById('radius').value);
+        var radius = escape(document.getElementById('radius').value);
         var latlng = marker.getPosition();
-        var url = 'searching.php?latitude=' + latlng.lat() + '&longitude=' + latlng.lng() + '&radius=' + radius+ '&title=' + title;
+        var url = 'searching.php?latitude=' + latlng.lat() + '&longitude=' + latlng.lng() + '&radius=' + radius + '&title=' + title;
           var infoWindowSearch = new google.maps.InfoWindow;
           // Change this depending on the name of your PHP or XML file
           downloadUrl(url, function(data) {
@@ -133,7 +139,12 @@
               var strong = document.createElement('strong');
               strong.textContent = title;
               infowincontent.appendChild(strong);
+              
               infowincontent.appendChild(document.createElement('br'));
+              var text = document.createElement('text');
+              text.textContent = 'distance is' + distance;
+              infowincontent.appendChild(text);
+			  infowincontent.appendChild(document.createElement('br'));
 				//alert('form created');
 				var theform = document.createElement("FORM");
 				theform.setAttribute("id", "myForm");
@@ -142,15 +153,17 @@
 				x.setAttribute("value", "edit");
 				x.setAttribute("onclick", 'editData('+travel_location_id+')');
     			theform.appendChild(x);
+				var y = document.createElement("INPUT");
+				y.setAttribute("type", "button");
+				y.setAttribute("value", "saveToPlan");
+				y.setAttribute("onclick", 'saveToPlan('+travel_location_id+')');
+    			theform.appendChild(y);
 				infowincontent.appendChild(theform);
-              infowincontent.appendChild(document.createElement('br'));
-              var text = document.createElement('text');
-              text.textContent = 'distance is' + distance;
-              infowincontent.appendChild(text);
+			  infowincontent.appendChild(document.createElement('br'));
 				if(!(travel_location_id in markers)){
 				  addMarker(point, type, travel_location_id);
 				  markers[travel_location_id].addListener('click', function() {
-					alert(travel_location_id);
+					document.getElementById('location_id').value = travel_location_id;
 					var y = document.getElementById('formEdit');
 					infowincontent.appendChild(y);
 					infoWindowSearch.setContent(infowincontent);
@@ -193,6 +206,21 @@
         var title = escape(document.getElementById('titleEdit').value);
 		//alert(title);
 		var url = 'googlemapseditLocation.php?id=' + id + '&title=' + title;
+		downloadUrl2(url, function(data, responseCode) {
+			alert('success');
+          if (responseCode == 200 && data.length <= 1) {
+            messagewindow.open(map, marker);
+          }
+        });
+	  }
+	  
+	  function saveToPlan(id) {
+		//alert('holy');
+		//alert(id);
+		//alert(title);
+        var travel_date = escape(document.getElementById('travel_date').value);
+        var travel_time = escape(document.getElementById('travel_time').value);
+		var url = 'addtravellocation.php?id=' + id + '&travel_date' + travel_date + '&travel_time' + travel_time;
 		downloadUrl2(url, function(data, responseCode) {
 			alert('success');
           if (responseCode == 200 && data.length <= 1) {
