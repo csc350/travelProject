@@ -1,4 +1,4 @@
-body{width:90%;
+body{width:100%;
 margin: 0 auto;}
 
 div.a{
@@ -6,7 +6,7 @@ div.a{
 }
 
 
-div.tittle{
+div.title{
 	font-size:160%;
 	font-family:verdana;
 }
