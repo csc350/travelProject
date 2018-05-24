@@ -58,7 +58,7 @@
     <p>Advantages?<p>
   </div>
   <div class="body">
-    <p>	Can highlight other attractions in an area to broaden users’ choice of activities
+    <p>	Can highlight other attractions in an area to broaden users’ choice of activities.<br/>
 	    Can offers users a group experience to add something special to their holiday.<br/>
 		The tag-based user review system would allow algorithms to accurately suggest relevant 
 		locations to users based on their own preferences or trip history.<br/>
