@@ -2,10 +2,8 @@ body{width:100%;
 margin: 0 auto;}
 
 div.a{
-   text-align:left-side;	
+   margin-left: 30px;	
 }
-
-
 div.title{
 	font-size:160%;
 	font-family:verdana;
@@ -14,7 +12,5 @@ div.body{
 	font-family:TimesNewRoman;
 }
 div.body2{
-	
 	font-family:TimesNewRoman;
-	
 }
