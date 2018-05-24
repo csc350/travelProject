@@ -32,21 +32,21 @@
 	   <img src="http://www.mendaily.com/wp-content/uploads/2012/11/Mexico-City-Metropolitan-Cathedral.jpg"alt ="Mexico City"width = "300" height = "225" > 
 	   <br/>
 	   
-	   <a href="https://www.mexicocity.com/"><p style color="yellow">Mexico City</p></a>
+	   <a href="MexicoCity.html"><p style color="yellow">Mexico City</p></a>
 	   
 	</div>
 	
 	<div class="place city2">
 	   <img src="http://www.linguaschools.com/blog/wp-content/uploads/2015/12/546b891b24799.jpg " alt ="Guanajuato" width = "300" height = "225"> 
 	   <br/>
-	   <a href="https://www.lonelyplanet.com/mexico/northern-central-highlands/guanajuato">Guanajuato</a>
+	   <a href="Guanajuato.html">Guanajuato</a>
 	</div>
 </div>  
 <div class="raw2">
 	<div class="places cities1">
 	   <img src="https://i1.wp.com/justacarryon.com/wp-content/uploads/2015/07/Screen-Shot-2015-07-02-at-7.42.21-PM.png?resize=777%2C445 " alt ="Merida" width = "300" height = "225">  
 	   <br/>
-	   <a href="https://www.lonelyplanet.com/mexico/yucatan-peninsula/merida">Merida</a>
+	   <a href="Merida.html">Merida</a>
 	</div>
 	
 	<div class="places cities2">
